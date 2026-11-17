@@ -5,4 +5,5 @@ namespace TripPlanner.Api.Repositories;
 public interface ITripRepository
 {
     IEnumerable<Trip> GetTrips();
+    Trip AddTrip(Trip trip);
 }

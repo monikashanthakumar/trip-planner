@@ -21,4 +21,12 @@ public class TripsController : ControllerBase
         var trips = _tripService.GetTrips();
         return Ok(trips);
     }
+
+    [HttpPost]
+    public ActionResult<Trip> AddTrip(Trip trip)
+    {
+        var createdTrip = _tripService.AddTrip(trip);
+
+        return CreatedAtAction(nameof(GetTrips), new { id = createdTrip.Id }, createdTrip);
+    }
 }

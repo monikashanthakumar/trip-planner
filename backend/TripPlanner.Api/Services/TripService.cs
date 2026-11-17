@@ -15,4 +15,9 @@ public class TripService : ITripService
     {
         return _tripRepository.GetTrips();
     }
+
+    public Trip AddTrip(Trip trip)
+    {
+        return _tripRepository.AddTrip(trip);
+    }
 }

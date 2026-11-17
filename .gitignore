@@ -42,6 +42,10 @@ ScaffoldingReadMe.txt
 # Others
 # macOS
 .DS_Store
+# Local SQLite database
+backend/TripPlanner.Api/tripplanner.db
+*.db-shm
+*.db-wal
 ~$*
 *~
 CodeCoverage/
