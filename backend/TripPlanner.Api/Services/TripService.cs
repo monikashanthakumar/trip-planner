@@ -11,6 +11,7 @@ public class TripService : ITripService
     {
         _tripRepository = tripRepository;
     }
+
     public IEnumerable<Trip> GetTrips()
     {
         return _tripRepository.GetTrips();
@@ -20,4 +21,10 @@ public class TripService : ITripService
     {
         return _tripRepository.AddTrip(trip);
     }
+
+    public Trip? GetTripById(int id)
+    {
+        return _tripRepository.GetTripById(id);
+    }
+
 }

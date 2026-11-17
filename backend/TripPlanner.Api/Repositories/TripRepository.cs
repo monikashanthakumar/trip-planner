@@ -22,4 +22,9 @@ public class TripRepository : ITripRepository
         _dbContext.SaveChanges();
         return trip;
     }
+
+    public Trip? GetTripById(int id)
+    {
+        return _dbContext.Trips.Find(id);
+    }
 }

@@ -27,6 +27,17 @@ public class TripsController : ControllerBase
     {
         var createdTrip = _tripService.AddTrip(trip);
 
-        return CreatedAtAction(nameof(GetTrips), new { id = createdTrip.Id }, createdTrip);
+        return CreatedAtAction(nameof(GetTripById), new { id = createdTrip.Id }, createdTrip);
+    }
+
+    [HttpGet("{id}")]
+    public ActionResult<Trip> GetTripById(int id)
+    {
+        var trip = _tripService.GetTripById(id);
+        if (trip == null)
+        {
+            return NotFound();
+        }
+        return Ok(trip);
     }
 }

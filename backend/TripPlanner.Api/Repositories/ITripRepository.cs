@@ -6,4 +6,5 @@ public interface ITripRepository
 {
     IEnumerable<Trip> GetTrips();
     Trip AddTrip(Trip trip);
+    Trip? GetTripById(int id);
 }
