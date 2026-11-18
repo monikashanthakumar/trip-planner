@@ -17,6 +17,35 @@ namespace TripPlanner.Api.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.14");
 
+            modelBuilder.Entity("TripPlanner.Api.Models.Activity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TripId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TripId");
+
+                    b.ToTable("Activities");
+                });
+
             modelBuilder.Entity("TripPlanner.Api.Models.Trip", b =>
                 {
                     b.Property<int>("Id")
@@ -24,7 +53,6 @@ namespace TripPlanner.Api.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Destination")
@@ -44,6 +72,22 @@ namespace TripPlanner.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Trips");
+                });
+
+            modelBuilder.Entity("TripPlanner.Api.Models.Activity", b =>
+                {
+                    b.HasOne("TripPlanner.Api.Models.Trip", "Trip")
+                        .WithMany("Activities")
+                        .HasForeignKey("TripId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Trip");
+                });
+
+            modelBuilder.Entity("TripPlanner.Api.Models.Trip", b =>
+                {
+                    b.Navigation("Activities");
                 });
 #pragma warning restore 612, 618
         }
