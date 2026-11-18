@@ -10,4 +10,5 @@ public class TripPlannerDbContext : DbContext
     }
 
     public DbSet<Trip> Trips { get; set; }
+    public DbSet<Activity> Activities { get; set; }
 }
