@@ -19,6 +19,7 @@ public class TripService : ITripService
 
     public Trip AddTrip(Trip trip)
     {
+        ValidateTrip(trip);
         return _tripRepository.AddTrip(trip);
     }
 
@@ -29,11 +30,20 @@ public class TripService : ITripService
 
     public Trip? UpdateTrip(int id, Trip trip)
     {
+        ValidateTrip(trip);
         return _tripRepository.UpdateTrip(id, trip);
     }
 
     public bool DeleteTrip(int id)
     {
         return _tripRepository.DeleteTrip(id);
+    }
+
+    private void ValidateTrip(Trip trip)
+    {
+        if (trip.StartDate > trip.EndDate)
+        {
+            throw new ArgumentException("Start date cannot be after end date.");
+        }
     }
 }

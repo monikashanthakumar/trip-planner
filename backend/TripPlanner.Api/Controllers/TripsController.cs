@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TripPlanner.Api.Models;
 using TripPlanner.Api.Services;
+using TripPlanner.Api.DTOs;
 
 namespace TripPlanner.Api.Controllers;
 
@@ -23,11 +24,23 @@ public class TripsController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<Trip> AddTrip(Trip trip)
+    public ActionResult<Trip> AddTrip(CreateTripDto createTripDto)
     {
+        var trip = new Trip
+        {
+            Name = createTripDto.Name,
+            Destination = createTripDto.Destination,
+            Description = createTripDto.Description,
+            StartDate = createTripDto.StartDate,
+            EndDate = createTripDto.EndDate
+        };
+
         var createdTrip = _tripService.AddTrip(trip);
 
-        return CreatedAtAction(nameof(GetTripById), new { id = createdTrip.Id }, createdTrip);
+        return CreatedAtAction(
+            nameof(GetTripById), 
+            new { id = createdTrip.Id }, 
+            createdTrip);
     }
 
     [HttpGet("{id}")]
@@ -42,8 +55,17 @@ public class TripsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public ActionResult<Trip> UpdateTrip(int id, Trip trip)
+    public ActionResult<Trip> UpdateTrip(int id, UpdateTripDto updateTripDto)
     {
+        var trip = new Trip
+        {
+            Name = updateTripDto.Name,
+            Destination = updateTripDto.Destination,
+            Description = updateTripDto.Description,
+            StartDate = updateTripDto.StartDate!.Value,
+            EndDate = updateTripDto.EndDate!.Value
+        };
+
         var updatedTrip = _tripService.UpdateTrip(id, trip);
         if (updatedTrip == null)
         {
