@@ -19,6 +19,8 @@ builder.Services.AddDbContext<TripPlannerDbContext>(options =>
 
 builder.Services.AddScoped<ITripService, TripService>();
 builder.Services.AddScoped<ITripRepository, TripRepository>();
+builder.Services.AddScoped<IActivityService, ActivityService>();
+builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 
 var app = builder.Build();
 app.UseExceptionHandler();

@@ -4,3 +4,51 @@ GET {{TripPlanner.Api_HostAddress}}/api/trips
 Accept: application/json
 
 ###
+
+GET {{TripPlanner.Api_HostAddress}}/api/trips/1/activities
+Accept: application/json
+
+###
+
+POST {{TripPlanner.Api_HostAddress}}/api/trips/1/activities
+Content-Type: application/json
+
+{
+  "name": "Visit the museum",
+  "date": "2026-11-18",
+  "location": "City center",
+  "notes": "Book tickets in advance"
+}
+
+###
+
+GET {{TripPlanner.Api_HostAddress}}/api/activities/1
+Accept: application/json
+
+###
+
+PUT {{TripPlanner.Api_HostAddress}}/api/activities/1
+Content-Type: application/json
+
+{
+  "name": "Visit the art museum",
+  "date": "2026-11-18",
+  "location": "City center",
+  "notes": "Tickets booked"
+}
+
+###
+
+DELETE {{TripPlanner.Api_HostAddress}}/api/activities/1
+
+###
+
+GET {{TripPlanner.Api_HostAddress}}/api/trips/999999/activities
+Accept: application/json
+
+###
+
+GET {{TripPlanner.Api_HostAddress}}/api/activities/999999
+Accept: application/json
+
+###
