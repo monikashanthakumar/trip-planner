@@ -27,4 +27,22 @@ public class TripRepository : ITripRepository
     {
         return _dbContext.Trips.Find(id);
     }
+
+    public Trip? UpdateTrip(int id, Trip trip)
+    {
+        var existingTrip = _dbContext.Trips.Find(id);
+
+        if (existingTrip == null)
+        {
+            return null;
+        }
+
+        existingTrip.Name = trip.Name;
+        existingTrip.Description = trip.Description;
+        existingTrip.StartDate = trip.StartDate;
+        existingTrip.EndDate = trip.EndDate;
+
+        _dbContext.SaveChanges();
+        return existingTrip;    
+    }
 }

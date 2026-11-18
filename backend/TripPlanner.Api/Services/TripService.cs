@@ -27,4 +27,8 @@ public class TripService : ITripService
         return _tripRepository.GetTripById(id);
     }
 
+    public Trip? UpdateTrip(int id, Trip trip)
+    {
+        return _tripRepository.UpdateTrip(id, trip);
+    }
 }

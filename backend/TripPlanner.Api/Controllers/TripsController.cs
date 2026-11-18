@@ -40,4 +40,15 @@ public class TripsController : ControllerBase
         }
         return Ok(trip);
     }
+
+    [HttpPut("{id}")]
+    public ActionResult<Trip> UpdateTrip(int id, Trip trip)
+    {
+        var updatedTrip = _tripService.UpdateTrip(id, trip);
+        if (updatedTrip == null)
+        {
+            return NotFound();
+        }
+        return Ok(updatedTrip);
+    }
 }

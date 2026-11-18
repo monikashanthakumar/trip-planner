@@ -8,4 +8,5 @@ public interface ITripService
     Trip AddTrip(Trip trip);
 
     Trip? GetTripById(int id);
+    Trip? UpdateTrip(int id, Trip trip);
 }
