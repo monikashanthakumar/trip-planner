@@ -31,8 +31,8 @@ public class TripsController : ControllerBase
             Name = createTripDto.Name,
             Destination = createTripDto.Destination,
             Description = createTripDto.Description,
-            StartDate = createTripDto.StartDate,
-            EndDate = createTripDto.EndDate
+            StartDate = createTripDto.StartDate!.Value,
+            EndDate = createTripDto.EndDate!.Value
         };
 
         var createdTrip = _tripService.AddTrip(trip);
