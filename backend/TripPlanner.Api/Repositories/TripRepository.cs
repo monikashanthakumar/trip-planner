@@ -45,4 +45,17 @@ public class TripRepository : ITripRepository
         _dbContext.SaveChanges();
         return existingTrip;    
     }
+
+    public bool DeleteTrip(int id)
+    {
+        var trip = _dbContext.Trips.Find(id);
+        if (trip == null)
+        {
+            return false;
+        }
+
+        _dbContext.Trips.Remove(trip);
+        _dbContext.SaveChanges();
+        return true;
+    }
 }

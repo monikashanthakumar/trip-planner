@@ -51,4 +51,15 @@ public class TripsController : ControllerBase
         }
         return Ok(updatedTrip);
     }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteTrip(int id)
+    {
+        var deleted = _tripService.DeleteTrip(id);
+        if (!deleted)
+        {
+            return NotFound();
+        }
+        return NoContent();
+    }
 }

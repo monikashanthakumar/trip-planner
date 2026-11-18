@@ -31,4 +31,9 @@ public class TripService : ITripService
     {
         return _tripRepository.UpdateTrip(id, trip);
     }
+
+    public bool DeleteTrip(int id)
+    {
+        return _tripRepository.DeleteTrip(id);
+    }
 }
